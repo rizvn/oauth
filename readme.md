@@ -1,5 +1,4 @@
-Example Usage
-
+#### Example Usage
 ```go
 package web
 
@@ -38,4 +37,18 @@ func main() {
 	
 }
 ```
+
+### Override Implementations
+```go
+
+// override keyvalue store, default is in-memory
+interceptor.KVStore = CustomKVStoreImplementation
+
+// override locker, default is in-memory
+interceptor.Locker = CustomLockerImplementation
+
+// override role mapper, default is noop
+interceptor.RoleMapper = CustomRoleMapperImplementation
 ```
+
+If not provided, default implementations will be used.
