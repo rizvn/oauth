@@ -263,7 +263,7 @@ func (r *OAuthRequestInterceptor) refreshExpiredToken(decodedToken *jwt.Token, w
 	} else {
 		refreshToken, err := r.fetchRefreshToken(accessTokenId)
 		if err != nil {
-			slog.Error("failed to fetch refresh token: %v", err)
+			slog.Error("failed to fetch refresh token", "error", err)
 			return nil
 		}
 
@@ -279,7 +279,7 @@ func (r *OAuthRequestInterceptor) refreshExpiredToken(decodedToken *jwt.Token, w
 	// Validate new access token
 	newDecodedToken, err := r.validateAccessToken(tokenResponse.AccessToken)
 	if err != nil {
-		slog.Error("refreshed access token is invalid: %v", err)
+		slog.Error("refreshed access token is invalid", "error", err)
 		return nil
 	}
 
